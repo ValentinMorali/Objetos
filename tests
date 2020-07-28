@@ -6,6 +6,7 @@ import entrenadores.*
 
 describe "Golondrina" {
 	var pepita = new Golondrina()
+	var manzana = new Comida(energia=5,velocidad=0 )
 	
 	test "la energia inicial de pepita es 100, como toda ave" {
 		assert.equals(100, pepita.energia())
