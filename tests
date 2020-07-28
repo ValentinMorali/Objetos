@@ -1,0 +1,73 @@
+import golondrinas.*
+import comida.*
+import aguilas.*
+import aguilaDeLosAndes.*
+import entrenadores.*
+
+describe "Golondrina" {
+	var pepita = new Golondrina()
+	
+	test "la energia inicial de pepita es 100, como toda ave" {
+		assert.equals(100, pepita.energia())
+	}
+	
+	test "luego de comer la manzana pepita aumentó su energia" {
+		pepita.comer(manzana)
+		assert.equals(180, pepita.energia())
+	}
+}
+
+describe "Aguila" {
+	var marquitos = new Aguilas()
+	
+	test "la energia inicial de marquitos es 100, como toda ave" {
+		assert.equals(100,marquitos.energia())
+	}
+	
+	test "luego de comer la manzana, marquitos aumenta su energia a 180" {
+		marquitos.comer(manzana)
+		assert.equals(180, marquitos.energia())
+	}
+	
+	test "luego de comer alpiste, marquitos queda gordo" {
+		marquitos.comer(migasdePan)
+		assert.that(marquitos.estaGorda())
+	}
+	test "luego de comer migasdePan, esta gordo, y consume 2 calorias por metro, Por lo que si vuela 100
+metros, su energia final es 440 (o sea 650-200-10)" {
+		marquitos.comer(migasdePan)
+		marquitos.volar(100)
+		assert.equals(440,marquitos.energia())
+	}
+	
+	test "la velocidad de marquitos es de 15 km/h si esta gordo" {
+		marquitos.comer(migasdePan)
+		assert.equals(15,marquitos.velocidad())
+	}
+	
+	test "la velocidad de marquitos es de 50 km/h si esta flaco" {
+		assert.equals(50, marquitos.velocidad())
+	}
+	test "marquitos nunca va a poder comerse un puma, por lo que su energia sera 100" {
+		marquitos.comer(puma)
+		assert.equals(100, marquitos.energia())
+	}
+		
+}
+describe "Aguila de los andes" {
+	var aguilin = new AguilaDeLosAndes()
+	var marquitos = new Aguilas()
+	
+	test "la energia inicial debe ser de 100" {
+		assert.equals(100, aguilin.energia())
+	}
+	test "la velocidad es el doble que la de un aguila normal (50*2)" {
+		assert.equals(100, aguilin.velocidad())
+	}
+	
+	test "roque agrega a aguilin y marquitos" {
+		roque.nuevaAveparaEntrenar(aguilin)
+		roque.nuevaAveparaEntrenar(marquitos)
+		assert.equals([aguilin,marquitos], roque.aves())	
+	}
+}
